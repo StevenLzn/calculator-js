@@ -29,6 +29,12 @@ function operations(operation) {
         case '-':
             result = num1 - num2
             break;
+        case '^':
+            result = num1 * num1
+            break;
+        case '√':
+            result = Math.sqrt(num1)
+            break;
         default:
             break;
     }
@@ -36,20 +42,38 @@ function operations(operation) {
 }
 
 function result(operation) {
-    if (num1 != 0 && num2 != 0 && operation != '=') {
+    //alert(num1)
+    //alert(num2)
+    //alert(currentOperation)
+    if (num1 != 0 && num2 != 0 && operation != '=' && operation != '=' && operation != '^') {
+        //alert("1")
         num2 = document.getElementById("display").value;
         num1 = document.getElementById("display").value = this.operations(currentOperation);
-        currentOperation = operation;        
+        currentOperation = operation;
         num2 = '';
-        
-    } else if(num1 != 0 && num2 == 0 && operation != '='){
+    } else if (num1 != 0 && num2 == 0 && operation != '=' && operation != '^' && operation != '√') {
+        //alert("2")
         num1 = document.getElementById("display").value;
         currentOperation = operation;
         isNextValue = true;
+    } else if (num1 != 0 &&  currentOperation == '' && operation == '^' || operation == '√' ) {
+        //alert("3")
+        currentOperation = operation;
+        num1 = document.getElementById("display").value = this.operations(currentOperation);
+        currentOperation = '';
+        isNextValue = true;
+    } else if (num1 != 0 && currentOperation != '' && operation == '^' || operation == '√' ) {
+        //alert("4")
+        num1 =  this.operations(currentOperation);
+        currentOperation = operation;
+        num1 = document.getElementById("display").value = this.operations(currentOperation);
+        currentOperation = '';
+        isNextValue = true;
     }
-    if (operation == '=') {
+    if (operation == '=' && currentOperation != '') {
         num2 = document.getElementById("display").value;
-        num1 = document.getElementById("display").value = this.operations(currentOperation);  
+        num1 = document.getElementById("display").value = this.operations(currentOperation);
+        currentOperation = '';
         num2 = '';
     }
 
@@ -71,6 +95,12 @@ function clickOperation(operation) {
             break;
         case '=':
             this.result('=')
+            break;
+        case '^':
+            this.result('^')
+            break;
+        case '√':
+            this.result('√')
             break;
         default:
             break;
