@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     <link rel="stylesheet" href="styles/style.css" type="text/css">
 </head>
+
 <body>
     <div class="calculator-container">
-        <input class="display" type="text" readonly id="display">
+        <div class="display-container">
+            <input class="display-operation" type="text" readonly id="display-op">
+            <input class="display-actual-number" type="text" readonly id="display-num">
+        </div>
         <div>
-            <button class="default-button operation">AC</button>
-            <button class="default-button operation">+/-</button>
+            <button class="default-button operation" id="clear" onclick="clearDisplay()">C</button>
+            <button class="default-button operation" onclick="changeSign()">+/-</button>
             <button class="default-button operation" onclick="clickOperation('^')">x²</button>
             <button class="default-button operation" onclick="clickOperation('√')">√</button>
         </div>
@@ -48,4 +53,5 @@
     </div>
     <script async src="scripts/main.js"></script>
 </body>
+
 </html>

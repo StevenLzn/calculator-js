@@ -4,14 +4,29 @@
     text-align: center;
 }
 
-.display{
+.display-container{
     width: 82%;
     height: 35px;
-    margin-bottom: .9%;
+    margin: auto;
     border: 1px solid black;
-    border-radius: 10px;
-    text-align: right;
+    border-radius: 10px;  
+}
+
+.display-operation,
+.display-actual-number {
+    display: inline-block;
+    width: 45%;
+    height: 30px;
+    border: none;
     font-size: 25px;
+}
+
+.display-actual-number{
+    text-align: right;
+}
+
+.display-operation{
+    text-align: left;
 }
 
 .default-button{
