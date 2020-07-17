@@ -3,21 +3,30 @@ var num2 = '';
 var currentOperation = '';
 var isNextValue = false;
 var cleared = false;
+var limit = false;
 
 function clickNumber(number) {
     if (num1 == 0) {
-        num1 = ''
-    } else if (num2 == 0) {
-        num2 = ''
+        num1 = '';
+        limit = false;
+    } else if (num2 == 0 && isNextValue) {
+        num2 = '';
+        document.getElementById("display-num").value = '';
+        limit = false;
     }
-
-    if (isNextValue) {
-        num2 = num2.toString() + number
+    if(num1.length == 8 && !isNextValue){
+        limit = true;
+    }
+    if(num2.length == 8 && isNextValue){
+        limit = true;
+    }
+    var value = document.getElementById("display-num").value;
+    if (isNextValue && !limit) {
+        num2 = value + number;
         document.getElementById("display-num").value = num2;
         cleared = false;
-    } else {
-        value = document.getElementById("display-num").value;
-        num1 = num1.toString() + number;
+    } else if(!isNextValue && !limit) {
+        num1 = value + number;
         document.getElementById("display-num").value = num1;
     }
 };
@@ -49,7 +58,7 @@ function operations(operation) {
         default:
             break;
     }
-    return result;
+    return Math.round(result * 10000) / 10000;
 }
 
 function result(operation) {
@@ -145,7 +154,9 @@ function clickTrigo(value) {
 
 function changeSign() {
     if (num1 != 0) {
-        document.getElementById("display-num").value *= -1;
+        var display = document.getElementById("display-num").value *= -1;
+        document.getElementById("display-op").value = display;
+
     }
 }
 
@@ -166,5 +177,13 @@ function clearDisplay() {
         document.getElementById("display-num").value = '';
         num2 = '';
         cleared = true;
+    }
+}
+
+function clickDot(){
+    var number = document.getElementById("display-num").value;
+    var isDotted = number.includes('.');
+    if(!isDotted){
+        document.getElementById("display-num").value += '.' 
     }
 }

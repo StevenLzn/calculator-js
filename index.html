@@ -12,7 +12,7 @@
     <div class="calculator-container">
         <div class="display-container">
             <input class="display-operation" type="text" readonly id="display-op">
-            <input class="display-actual-number" type="text" readonly id="display-num">
+            <input class="display-actual-number" type="text" readonly id="display-num" maxlength="6">
         </div>
         <div>
             <button class="default-button operation" id="clear" onclick="clearDisplay()">C</button>
@@ -47,7 +47,7 @@
         <div>
             <button class="default-button operation" onclick="clickOperation('%')">%</button>
             <button class="default-button" onclick="clickNumber(0);">0</button>
-            <button class="default-button">,</button>
+            <button class="default-button" onclick="clickDot()">,</button>
             <button class="default-button operation" onclick="clickOperation('=');">=</button>
         </div>
     </div>
