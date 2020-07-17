@@ -62,28 +62,21 @@ function operations(operation) {
 }
 
 function result(operation) {
-    //alert(num1)
-    //alert(num2)
-    //alert(currentOperation)
-    if (num1 != '' && num2 != '' && operation != '=' && operation != '=' && operation != '^') {
-        //alert("1")
+    if (num1 != '' && num2 != '' && operation != '=' && operation != '√' && operation != '^') {
         num2 = document.getElementById("display-num").value;
         num1 = document.getElementById("display-num").value = this.operations(currentOperation);
         currentOperation = operation;
         num2 = '';
     } else if (num1 != '' && num2 == '' && operation != '=' && operation != '^' && operation != '√') {
-        //alert("2")
         num1 = document.getElementById("display-num").value;
         currentOperation = operation;
         isNextValue = true;
-    } else if (num1 != '' && currentOperation == '' && operation == '^' || operation == '√') {
-        //alert("3")
+    } else if (num1 != '' && currentOperation == '' && (operation == '^' || operation == '√')) {
         currentOperation = operation;
         num1 = document.getElementById("display-num").value = this.operations(currentOperation);
         currentOperation = '';
         isNextValue = false;
-    } else if (num1 != '' && currentOperation != '' && operation == '^' || operation == '√') {
-        //alert("4")
+    } else if (num1 != '' && currentOperation != '' && (operation == '^' || operation == '√')) {
         num1 = this.operations(currentOperation);
         currentOperation = operation;
         num1 = document.getElementById("display-num").value = this.operations(currentOperation);
@@ -137,13 +130,13 @@ function clickTrigo(value) {
     if (num1 != '') {
         switch (value) {
             case 'cos':
-                num1 = document.getElementById("display-num").value = Math.cos(num1);
+                num1 = document.getElementById("display-num").value = Math.round(Math.cos(num1) * 10000) / 10000;
                 break;
             case 'sin':
-                num1 = document.getElementById("display-num").value = Math.sin(num1);
+                num1 = document.getElementById("display-num").value = Math.round(Math.sin(num1) * 10000) / 10000;
                 break;
             case 'tan':
-                num1 = document.getElementById("display-num").value = Math.tan(num1);
+                num1 = document.getElementById("display-num").value = Math.round(Math.tan(num1) * 10000) / 10000;
                 break;
 
             default:
